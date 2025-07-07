@@ -29,7 +29,7 @@ export function AdminSidebar() {
     ]
 
     return (
-        <Sidebar>
+        <Sidebar className="border-r border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <SidebarContent>
                 <SidebarGroup className="space-y-3">
                     {links.map((link) => (

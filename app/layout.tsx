@@ -5,11 +5,10 @@ import { Toaster } from "sonner";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { auth } from "@/auth";
 import { ThemeProvider } from "next-themes";
-import { ThemeToggle } from "@/components/theme-provider";
 import SessionProvider from "@/components/session-provider";
-import Logo from "@/components/logo";
-import UserMenu from "@/components/user-menu";
 import { AdminSidebar } from "@/components/admin-sidebar";
+import Header from "@/components/header";
+import { User } from "next-auth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,17 +51,7 @@ export default async function RootLayout({
                 <AdminSidebar />
               )}
               <div className="flex flex-col flex-1">
-                <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-                  <div className="flex h-14 items-center px-4">
-                    <div className="flex flex-1 items-center justify-between">
-                      <Logo />
-                      <div className="flex items-center gap-4">
-                        <ThemeToggle />
-                        <UserMenu />
-                      </div>
-                    </div>
-                  </div>
-                </header>
+                <Header user={user as User} />
                 <main className="flex-1 px-4">
                   {children}
                 </main>
