@@ -52,7 +52,7 @@ export default async function RootLayout({
               )}
               <div className="flex flex-col flex-1">
                 <Header user={user as User} />
-                <main className="flex-1 px-4">
+                <main className="flex-1">
                   {children}
                 </main>
               </div>

@@ -48,8 +48,8 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="max-w-md w-full p-8 bg-card rounded-lg shadow">
+    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950">
+      <div className="max-w-md w-full p-8 vercel-card">
         {emailSent ? (
           <div className="text-center space-y-4">
             <div className="flex justify-center">
@@ -60,16 +60,16 @@ export default function LoginPage() {
                 </svg>
               </div>
             </div>
-            <h2 className="text-2xl font-bold text-foreground">Check your email</h2>
-            <p className="text-muted-foreground">
-              We&apos;ve sent a magic link to <span className="font-medium">{email}</span>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Check your email</h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              We&apos;ve sent a magic link to <span className="font-medium text-gray-900 dark:text-gray-100">{email}</span>
             </p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-gray-500 dark:text-gray-500">
               Can&apos;t find the email? Check your spam folder or{' '}
               <button
                 type="button"
                 onClick={() => setEmailSent(false)}
-                className="text-primary hover:text-primary/90"
+                className="text-gray-900 dark:text-gray-100 hover:text-gray-700 dark:hover:text-gray-300 font-medium"
               >
                 try again
               </button>
@@ -80,13 +80,13 @@ export default function LoginPage() {
             <div className="flex items-center justify-center gap-2 group">
               <Logo />
             </div>
-            <h2 className="text-center text-2xl font-bold text-foreground my-3">
+            <h2 className="text-center text-2xl font-bold text-gray-900 dark:text-gray-100 my-6">
               Sign in to your account
             </h2>
 
             <button
               type="button"
-              className="w-full flex items-center justify-center gap-2 px-4 py-2 border border-input rounded-md shadow-sm text-sm font-medium text-foreground bg-background hover:bg-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-200 dark:border-gray-800 rounded-lg text-sm font-medium text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors"
               onClick={() => signIn('google', { callbackUrl: '/app' })}
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -111,16 +111,16 @@ export default function LoginPage() {
               Continue with Google
             </button>
 
-            <div className="relative py-4">
+            <div className="relative py-6">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-input" />
+                <div className="w-full border-t border-gray-200 dark:border-gray-800" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-card text-muted-foreground">Or</span>
+                <span className="px-3 bg-white dark:bg-gray-950 text-gray-500 dark:text-gray-500">Or</span>
               </div>
             </div>
 
-            <form className="space-y-2" onSubmit={handleSubmit}>
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="email" className="sr-only">
                   Email address
@@ -130,7 +130,7 @@ export default function LoginPage() {
                   name="email"
                   type="email"
                   required
-                  className="appearance-none rounded-md relative block w-full px-3 py-2 border border-input placeholder-muted-foreground text-foreground focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm bg-background"
+                  className="vercel-input"
                   placeholder="Email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -142,11 +142,11 @@ export default function LoginPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="group disabled:opacity-50 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-primary-foreground bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                  className="vercel-button-primary w-full py-3 disabled:opacity-50"
                 >
                   {isLoading ? (
                     <span className="flex items-center gap-2">
-                      <Loader className="h-4 w-4 text-primary-foreground" />
+                      <Loader className="h-4 w-4" />
                       Sending magic link...
                     </span>
                   ) : (

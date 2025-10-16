@@ -25,10 +25,6 @@ export default function Header({ menuPosition = "center", user }: HeaderProps) {
             href: "/app"
         },
         {
-            label: "Files",
-            href: "/files"
-        },
-        {
             label: "Settings",
             href: "/settings"
         }
@@ -58,17 +54,17 @@ export default function Header({ menuPosition = "center", user }: HeaderProps) {
     };
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="grid grid-cols-3 h-14 items-center px-4">
+        <header className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-950/60">
+            <div className="max-w-7xl mx-auto grid grid-cols-3 h-16 items-center px-6">
                 {/* Left section */}
                 <div className="flex items-center gap-6">
                     {menuPosition !== "center" && (
                         <>
                             <Logo />
                             {user && menuPosition === "left" && (
-                                <nav className="hidden md:flex items-center gap-6">
+                                <nav className="hidden md:flex items-center gap-8">
                                     {navItems.map((item) => (
-                                        <Link key={item.href} href={item.href} className="text-sm font-medium hover:text-primary transition-colors">
+                                        <Link key={item.href} href={item.href} className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
                                             {item.label}
                                         </Link>
                                     ))}
@@ -82,18 +78,18 @@ export default function Header({ menuPosition = "center", user }: HeaderProps) {
                 {/* Center section */}
                 <div className="flex justify-center">
                     {menuPosition === "center" && user && (
-                        <nav className="hidden md:flex items-center gap-6">
+                        <nav className="hidden md:flex items-center gap-8">
                             {navItems.map((item) => (
-                                <Link key={item.href} href={item.href} className="text-sm font-medium hover:text-primary transition-colors">
+                                <Link key={item.href} href={item.href} className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
                                     {item.label}
                                 </Link>
                             ))}
                         </nav>
                     )}
                     {menuPosition === "right" && user && (
-                        <nav className={cn("hidden md:flex items-center gap-6", getMenuPositionClasses())}>
+                        <nav className={cn("hidden md:flex items-center gap-8", getMenuPositionClasses())}>
                             {navItems.map((item) => (
-                                <Link key={item.href} href={item.href} className="text-sm font-medium hover:text-primary transition-colors">
+                                <Link key={item.href} href={item.href} className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
                                     {item.label}
                                 </Link>
                             ))}
@@ -107,7 +103,7 @@ export default function Header({ menuPosition = "center", user }: HeaderProps) {
                         <>
                             <Link
                                 href="/upgrade"
-                                className="hidden sm:inline-flex items-center justify-center rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:opacity-90 transition-opacity"
+                                className="hidden sm:inline-flex items-center justify-center rounded-full bg-black dark:bg-white text-white dark:text-black px-4 py-2 text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
                             >
                                 Upgrade
                             </Link>
@@ -115,7 +111,7 @@ export default function Header({ menuPosition = "center", user }: HeaderProps) {
                                 <button
                                     type="button"
                                     onClick={() => setIsOpen(!isOpen)}
-                                    className="flex items-center gap-2 hover:bg-muted transition-colors rounded-full p-1"
+                                    className="flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors rounded-full p-1"
                                 >
                                     <Avatar className="cursor-pointer w-8 h-8">
                                         <AvatarImage src={user.image || ''} alt={user.name || 'User avatar'} />
@@ -133,7 +129,7 @@ export default function Header({ menuPosition = "center", user }: HeaderProps) {
 
                                 <div
                                     className={twMerge(
-                                        "absolute top-full right-0 bg-card text-card-foreground shadow-lg rounded-xl p-1 min-w-48 border border-border transform transition-all duration-200 origin-top animate-in fade-in slide-in-from-top-2",
+                                        "absolute top-full right-0 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 shadow-xl rounded-xl p-1 min-w-48 border border-gray-200 dark:border-gray-800 transform transition-all duration-200 origin-top animate-in fade-in slide-in-from-top-2",
                                         isOpen ? "opacity-100 mt-2" : "opacity-0 invisible -mt-4",
                                     )}
                                 >
@@ -141,7 +137,7 @@ export default function Header({ menuPosition = "center", user }: HeaderProps) {
                                         <div className="flex items-center gap-2 px-2 py-1.5 text-sm">
                                             <span className="font-medium">{user.name || user.email}</span>
                                         </div>
-                                        <div className="border-t my-1" />
+                                        <div className="border-t border-gray-200 dark:border-gray-700 my-1" />
                                         <div className="flex items-center justify-between px-2 py-1.5">
                                             <span className="text-sm">Theme</span>
                                             <ThemeToggle />
@@ -155,13 +151,13 @@ export default function Header({ menuPosition = "center", user }: HeaderProps) {
                             <ThemeToggle />
                             <Link
                                 href="/auth/signin"
-                                className="text-sm font-medium hover:text-primary transition-colors"
+                                className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
                             >
                                 Sign In
                             </Link>
                             <Link
                                 href="/auth/signin"
-                                className="inline-flex items-center justify-center rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:opacity-90 transition-opacity"
+                                className="inline-flex items-center justify-center rounded-full bg-black dark:bg-white text-white dark:text-black px-4 py-2 text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
                             >
                                 Sign Up
                             </Link>
