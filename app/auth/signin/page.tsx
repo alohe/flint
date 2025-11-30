@@ -48,7 +48,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950">
+    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-black">
       <div className="max-w-md w-full p-8 vercel-card">
         {emailSent ? (
           <div className="text-center space-y-4">

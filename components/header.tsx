@@ -7,8 +7,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { useState, useEffect, useRef } from "react";
 import { User } from "next-auth";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, LogOut } from "lucide-react";
 import { twMerge } from "tailwind-merge";
+import { logoutAction } from "@/app/(app)/_actions/auth";
 
 interface HeaderProps {
     menuPosition?: "left" | "center" | "right";
@@ -54,7 +55,7 @@ export default function Header({ menuPosition = "center", user }: HeaderProps) {
     };
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-950/60">
+        <header className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-black/80 backdrop-blur-xl supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-black/60">
             <div className="max-w-7xl mx-auto grid grid-cols-3 h-16 items-center px-6">
                 {/* Left section */}
                 <div className="flex items-center gap-6">
@@ -64,7 +65,7 @@ export default function Header({ menuPosition = "center", user }: HeaderProps) {
                             {user && menuPosition === "left" && (
                                 <nav className="hidden md:flex items-center gap-8">
                                     {navItems.map((item) => (
-                                        <Link key={item.href} href={item.href} className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+                                        <Link key={item.href} href={item.href} className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                                             {item.label}
                                         </Link>
                                     ))}
@@ -80,7 +81,7 @@ export default function Header({ menuPosition = "center", user }: HeaderProps) {
                     {menuPosition === "center" && user && (
                         <nav className="hidden md:flex items-center gap-8">
                             {navItems.map((item) => (
-                                <Link key={item.href} href={item.href} className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+                                <Link key={item.href} href={item.href} className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                                     {item.label}
                                 </Link>
                             ))}
@@ -89,7 +90,7 @@ export default function Header({ menuPosition = "center", user }: HeaderProps) {
                     {menuPosition === "right" && user && (
                         <nav className={cn("hidden md:flex items-center gap-8", getMenuPositionClasses())}>
                             {navItems.map((item) => (
-                                <Link key={item.href} href={item.href} className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+                                <Link key={item.href} href={item.href} className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                                     {item.label}
                                 </Link>
                             ))}
@@ -129,7 +130,7 @@ export default function Header({ menuPosition = "center", user }: HeaderProps) {
 
                                 <div
                                     className={twMerge(
-                                        "absolute top-full right-0 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 shadow-xl rounded-xl p-1 min-w-48 border border-gray-200 dark:border-gray-800 transform transition-all duration-200 origin-top animate-in fade-in slide-in-from-top-2",
+                                        "absolute top-full right-0 bg-white dark:bg-black text-gray-900 dark:text-white shadow-xl rounded-xl p-1 min-w-48 border border-gray-200 dark:border-gray-800 transform transition-all duration-200 origin-top animate-in fade-in slide-in-from-top-2",
                                         isOpen ? "opacity-100 mt-2" : "opacity-0 invisible -mt-4",
                                     )}
                                 >
@@ -137,11 +138,21 @@ export default function Header({ menuPosition = "center", user }: HeaderProps) {
                                         <div className="flex items-center gap-2 px-2 py-1.5 text-sm">
                                             <span className="font-medium">{user.name || user.email}</span>
                                         </div>
-                                        <div className="border-t border-gray-200 dark:border-gray-700 my-1" />
+                                        <div className="border-t border-gray-200 dark:border-gray-800 my-1" />
                                         <div className="flex items-center justify-between px-2 py-1.5">
                                             <span className="text-sm">Theme</span>
                                             <ThemeToggle />
                                         </div>
+                                        <div className="border-t border-gray-200 dark:border-gray-800 my-1" />
+                                        <form action={logoutAction}>
+                                            <button
+                                                type="submit"
+                                                className="flex items-center gap-2 w-full px-2 py-1.5 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-900 rounded-md transition-colors"
+                                            >
+                                                <LogOut className="h-4 w-4" />
+                                                Sign out
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +162,7 @@ export default function Header({ menuPosition = "center", user }: HeaderProps) {
                             <ThemeToggle />
                             <Link
                                 href="/auth/signin"
-                                className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+                                className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
                             >
                                 Sign In
                             </Link>

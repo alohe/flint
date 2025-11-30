@@ -50,9 +50,9 @@ export default async function RootLayout({
               {user && user.role === "ADMIN" && (
                 <AdminSidebar />
               )}
-              <div className="flex flex-col flex-1">
+              <div className="flex flex-col flex-1 bg-white dark:bg-black">
                 <Header user={user as User} />
-                <main className="flex-1">
+                <main className="flex-1 bg-white dark:bg-black">
                   {children}
                 </main>
               </div>

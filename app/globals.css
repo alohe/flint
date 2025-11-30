@@ -62,38 +62,48 @@ body {
     --vercel-gray-700: 0 0% 25%;
     --vercel-gray-800: 0 0% 15%;
     --vercel-gray-900: 0 0% 9%;
+    
+    /* Dark mode Vercel-inspired colors */
+    --vercel-dark-bg: 0 0% 3.9%;
+    --vercel-dark-surface: 0 0% 7%;
+    --vercel-dark-surface-elevated: 0 0% 10%;
+    --vercel-dark-border: 0 0% 20%;
+    --vercel-dark-border-subtle: 0 0% 15%;
+    --vercel-dark-text-primary: 0 0% 98%;
+    --vercel-dark-text-secondary: 0 0% 70%;
+    --vercel-dark-text-tertiary: 0 0% 50%;
   }
   .dark {
     --background: 0 0% 0%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 0%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 0%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 0 0% 0%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 0%;
+    --ring: 0 0% 100%;
     --chart-1: 210 70% 50%;
     --chart-2: 200 60% 45%;
     --chart-3: 190 65% 45%;
     --chart-4: 180 55% 50%;
     --chart-5: 170 65% 45%;
-    --sidebar-background: 0 0% 5%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 0 0% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 0 0% 90%;
-    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 0%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 0%;
+    --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 20%;
     --sidebar-ring: 210 70% 50%;
   }
@@ -105,6 +115,9 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+  .dark body {
+    @apply bg-black text-white;
   }
 }
 
@@ -158,6 +171,7 @@ body {
   border-radius: 0.25rem;
   font-size: 0.875rem;
   font-family: monospace;
+  color: hsl(var(--foreground));
 }
 
 .prose pre {
@@ -166,6 +180,7 @@ body {
   border-radius: 0.5rem;
   overflow-x: auto;
   margin-bottom: 1rem;
+  border: 1px solid hsl(var(--border));
 }
 
 .prose pre code {
@@ -225,7 +240,7 @@ body {
   }
   
   .vercel-card {
-    @apply bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 vercel-shadow;
+    @apply bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 vercel-shadow;
   }
   
   .vercel-button {
@@ -241,6 +256,39 @@ body {
   }
   
   .vercel-input {
-    @apply flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:ring-offset-gray-950 dark:placeholder:text-gray-400 dark:focus-visible:ring-gray-300;
+    @apply flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-800 dark:bg-black dark:ring-offset-black dark:placeholder:text-gray-400 dark:focus-visible:ring-gray-300;
+  }
+  
+  /* Enhanced dark mode utilities */
+  .dark-mode-enhanced {
+    @apply dark:bg-black dark:text-white;
+  }
+  
+  .dark-mode-surface {
+    @apply dark:bg-black dark:border-gray-800;
+  }
+  
+  .dark-mode-surface-elevated {
+    @apply dark:bg-black dark:border-gray-700;
+  }
+  
+  .dark-mode-text-primary {
+    @apply dark:text-white;
+  }
+  
+  .dark-mode-text-secondary {
+    @apply dark:text-gray-300;
+  }
+  
+  .dark-mode-text-tertiary {
+    @apply dark:text-gray-400;
+  }
+  
+  .dark-mode-border {
+    @apply dark:border-gray-800;
+  }
+  
+  .dark-mode-border-subtle {
+    @apply dark:border-gray-900;
   }
 }

@@ -14,7 +14,7 @@ export default async function Page() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
+    <div className="min-h-screen bg-white dark:bg-black">
       <div className="flex flex-col items-center justify-center h-screen text-center px-6">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl font-bold tracking-tight sm:text-7xl bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent">
